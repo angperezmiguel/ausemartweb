@@ -1,7 +1,7 @@
 name: Build and upload webstore artifact
 
 on:
-  workflow_dispatch:
+  workflow_dispatch
 
 env:
   BUILD_CONF: release
