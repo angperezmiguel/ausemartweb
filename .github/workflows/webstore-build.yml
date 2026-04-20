@@ -1,1 +1,25 @@
+name: Build and upload webstore artifact
 
+on:
+  workflow_dispatch:
+
+env:
+  BUILD_CONF: release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+      - name: Restore
+        run: dotnet restore 
+      - name: Build
+        run: dotnet build --configuration ${{ env.BUILD_CONF }}
+      - name: Publish
+        run: dotnet publish --configuration $${ env.BUILD_CONF }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: webstore
+          path: ./webstore
